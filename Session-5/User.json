@@ -1,0 +1,22 @@
+{
+    "data":[
+        {
+            "name":"Rajiv",
+            "city":"Delhi"
+        },{
+             "name":"Riya",
+            "city":"Bhopal"
+        },{
+             "name":"Salmaan",
+            "city":"Mumbai"
+        },
+        {
+            "name":"Ziya",
+           "city":"Mumbai"
+       },
+       {
+        "name":"Ayush ",
+       "city":"Banglore"
+   }
+    ]
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      * {
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .header {
+        height: 70px;
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: 20% 80%;
+        height: 100vh;
+        padding: 20px;
+      }
+      .options {
+        /* background-color: lightcoral; */
+        padding: 50px;
+      }
+      .content {
+        /* background-color: lightslategray; */
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+        grid-gap: 20px;
+      }
+      .card {
+        width: 300px;
+        box-shadow: 0 0 10px black;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+    <script></script>
+  </head>
+  <body>
+    <div class="header">
+      <h2 id="products">All Products Information</h2>
+    </div>
+    <div class="container">
+      <div class="options">
+        <div><input type="radio" name="categories" checked />ALL</div>
+        <br />
+        <div>
+          <input type="radio" name="categories" />
+          Electronics
+        </div>
+        <br />
+        <div>
+          <input type="radio" name="categories" />
+          Jewelery's
+        </div>
+        <br />
+        <div><input type="radio" name="categories" />Mens Clothing</div>
+        <br />
+        <div><input type="radio" name="categories" />Womens Clothing</div>
+        <br />
+      </div>
+      <div class="content"></div>
+    </div>
+  </body>
+</html>

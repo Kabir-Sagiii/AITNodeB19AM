@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function getUsers() {
+        fetch("http://localhost:7030")
+          .then((res) => {
+            return res.json();
+          })
+          .then((result) => {
+            var ol = document.createElement("ol");
+            // var li1 = document.createElement("li");
+            // var li2 = document.createElement("li");
+            // var li3 = document.createElement("li");
+            // ol.appendChild(li1);
+            // ol.appendChild(li2);
+            // ol.appendChild(li3);
+
+            // li1.innerText = result.data[0].name;
+            // li2.innerText = result.data[1].name;
+            // li3.innerText = result.data[2].name;
+
+            //result.data = [{name:"",city},{},{},{}]
+
+            result.data.forEach(function (element) {
+              // element = {name:"",city}
+              var li = document.createElement("li");
+              li.innerText = element.name;
+              ol.appendChild(li);
+            });
+
+            document.getElementById("body").appendChild(ol);
+          });
+      }
+    </script>
+  </head>
+  <body id="body">
+    <h2>HTML with JS AND NODEJS</h2>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt amet
+      culpa architecto magnam tempora at cupiditate iste ipsam odit inventore
+      aspernatur nihil quis ipsa explicabo suscipit fugit corporis doloribus
+      atque hic laudantium error debitis, reprehenderit unde quae. Repellendus
+      fugit laboriosam vel quae ad sapiente laudantium quos deserunt tenetur.
+      Praesentium expedita necessitatibus voluptas delectus accusamus vitae
+      eligendi reiciendis. Accusantium, dolore quod!
+    </p>
+    <button onclick="getUsers()">Get User Data</button>
+  </body>
+</html>

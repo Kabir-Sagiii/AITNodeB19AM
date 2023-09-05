@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function getRandomUser() {
+        fetch("http://localhost:7030/randomuser")
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            document.getElementById("radios").style.display = "block";
+            var table = document.createElement("table");
+            var tr1 = document.createElement("tr");
+            var th1 = document.createElement("th");
+            var th2 = document.createElement("th");
+            var th3 = document.createElement("th");
+            var th4 = document.createElement("th");
+            var th5 = document.createElement("th");
+
+            th1.innerText = "IMAGE";
+            th2.innerText = "NAME";
+            th3.innerText = "GENDER";
+            th4.innerText = "EMAIL";
+            th5.innerText = "CITY";
+
+            tr1.appendChild(th1);
+            tr1.appendChild(th2);
+            tr1.appendChild(th3);
+            tr1.appendChild(th4);
+            tr1.appendChild(th5);
+
+            table.appendChild(tr1);
+
+            data.results.forEach(function (element) {
+              var tr = document.createElement("tr");
+
+              var td1 = document.createElement("td");
+              var td2 = document.createElement("td");
+              var td3 = document.createElement("td");
+              var td4 = document.createElement("td");
+              var td5 = document.createElement("td");
+
+              var img = document.createElement("img");
+              img.src = element.picture.medium;
+              img.width = "100";
+              img.height = "100";
+
+              td1.appendChild(img);
+              td2.innerText = element.name.first + " " + element.name.last;
+              td3.innerText = element.gender;
+              td4.innerText = element.email;
+              td5.innerText = element.location.city;
+
+              tr.appendChild(td1);
+              tr.appendChild(td2);
+              tr.appendChild(td3);
+              tr.appendChild(td4);
+              tr.appendChild(td5);
+
+              tr.align = "center";
+
+              table.appendChild(tr);
+            });
+
+            table.width = "1200px";
+            table.style.margin = "30px auto";
+            table.cellPadding = "10px";
+            table.frame = "box";
+            table.rules = "all";
+            table.style.backgroundColor = "black";
+            table.style.color = "white";
+            document.getElementById("body").appendChild(table);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+
+      function getUsers() {
+        fetch("http://localhost:7030")
+          .then((res) => {
+            return res.json();
+          })
+          .then((result) => {
+            var ol = document.createElement("ol");
+            // var li1 = document.createElement("li");
+            // var li2 = document.createElement("li");
+            // var li3 = document.createElement("li");
+            // ol.appendChild(li1);
+            // ol.appendChild(li2);
+            // ol.appendChild(li3);
+
+            // li1.innerText = result.data[0].name;
+            // li2.innerText = result.data[1].name;
+            // li3.innerText = result.data[2].name;
+
+            //result.data = [{name:"",city},{},{},{}]
+
+            result.data.forEach(function (element) {
+              // element = {name:"",city}
+              var li = document.createElement("li");
+              li.innerText = element.name;
+              ol.appendChild(li);
+            });
+
+            document.getElementById("body").appendChild(ol);
+          });
+      }
+    </script>
+  </head>
+  <body id="body">
+    <h2>HTML with JS AND NODEJS</h2>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt amet
+      culpa architecto magnam tempora at cupiditate iste ipsam odit inventore
+      aspernatur nihil quis ipsa explicabo suscipit fugit corporis doloribus
+      atque hic laudantium error debitis, reprehenderit unde quae. Repellendus
+      fugit laboriosam vel quae ad sapiente laudantium quos deserunt tenetur.
+      Praesentium expedita necessitatibus voluptas delectus accusamus vitae
+      eligendi reiciendis. Accusantium, dolore quod!
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque iusto
+      nesciunt quisquam sequi hic quas, quam minus vel optio tempora unde
+      explicabo molestias, est dolor illum. Ipsam eius facere iusto modi odit
+      dolore veritatis sequi nulla minima officia nihil voluptatum id
+      perferendis illo error, enim sint ad doloribus aliquid molestias facilis
+      quam quasi magni! Ipsam officia explicabo exercitationem sapiente sunt
+      praesentium doloremque, totam iure quis mollitia repellat accusantium
+      doloribus nobis itaque quod ea. Et officia repudiandae temporibus beatae
+      harum laborum, quisquam dolores doloremque numquam, minima odit molestiae,
+      minus fugit possimus! Ducimus, omnis nemo! Hic odit officia voluptas,
+      labore natus dolorem atque debitis dolorum sint eum facere, aut asperiores
+      ipsum quam. Cumque numquam iste earum exercitationem incidunt fugit libero
+      repellat. Dolores maxime, porro nemo inventore consectetur vel est! Non
+      fugiat consectetur ducimus eaque ratione molestias beatae incidunt
+      necessitatibus ex voluptate provident tenetur, sed officia nemo illum
+      quas! Ea explicabo vitae rerum unde magni voluptatibus, repellendus
+      dolorem? Voluptatum, porro cum eos repellat laboriosam consequuntur
+      aperiam qui similique perferendis voluptas voluptate. Fugiat fuga aliquam
+      quasi magnam id blanditiis harum similique quam adipisci explicabo. Rerum
+      qui voluptatum possimus suscipit, impedit eveniet esse fugit magni cumque
+      voluptatibus cum ad error molestias ex, consequuntur eos earum.
+    </p>
+    <button onclick="getUsers()">Get User Data</button>
+    <button onclick="getRandomUser()">Get Random Users</button>
+
+    <div
+      id="radios"
+      style="margin-top: 30px; text-align: center; display: none"
+    >
+      <input type="radio" name="gender" checked />ALL
+      <input type="radio" name="gender" />Male
+      <input type="radio" name="gender" />Female
+    </div>
+  </body>
+</html>
