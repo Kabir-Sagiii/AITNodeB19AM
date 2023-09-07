@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      function getProductsData(path) {
+        var title = document.getElementById("products");
+        fetch(`http://localhost:6030/${path}`)
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            console.log(data);
+            title.innerText = data.title + " " + data.results.length;
+            document.getElementsByClassName("content")[0].replaceChildren();
+            data.results.forEach((product) => {
+              var div = document.createElement("div");
+              var img = document.createElement("img");
+              var h4 = document.createElement("h4");
+              var p = document.createElement("p");
+              var btn = document.createElement("button");
+
+              img.src = product.image;
+              img.width = "250";
+              img.height = "200";
+
+              h4.innerText = product.title;
+              p.innerText = product.description;
+              btn.innerText = "Product Details";
+
+              div.className = "card";
+              div.appendChild(img);
+              div.appendChild(h4);
+              div.appendChild(p);
+              div.appendChild(btn);
+
+              document.getElementsByClassName("content")[0].appendChild(div);
+            });
+          })
+          .catch((error) => {
+            alert("Something Went Wrong");
+            console.log(error);
+          });
+      }
+    </script>
+    <style>
+      * {
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .header {
+        height: 70px;
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: 20% 80%;
+        height: 100vh;
+        padding: 20px;
+      }
+      .options {
+        /* background-color: lightcoral; */
+        padding: 50px;
+      }
+      .content {
+        /* background-color: lightslategray; */
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+        grid-gap: 20px;
+
+        padding: 20px;
+      }
+      .card {
+        width: 300px;
+        box-shadow: 0 0 10px black;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body onload="getProductsData('products')">
+    <div class="header">
+      <h2 id="products">All Products Details</h2>
+    </div>
+    <div class="container">
+      <div class="options">
+        <div>
+          <input
+            type="radio"
+            name="categories"
+            checked
+            onchange="getProductsData('products')"
+          />ALL
+        </div>
+        <br />
+        <div>
+          <input
+            type="radio"
+            name="categories"
+            onchange="getProductsData('products/electronics')"
+          />
+          Electronics
+        </div>
+        <br />
+        <div>
+          <input
+            type="radio"
+            name="categories"
+            onchange="getProductsData('products/jewelerys')"
+          />
+          Jewelery's
+        </div>
+        <br />
+        <div>
+          <input
+            type="radio"
+            name="categories"
+            onchange="getProductsData('products/mensclothing')"
+          />Mens Clothing
+        </div>
+        <br />
+        <div>
+          <input
+            type="radio"
+            name="categories"
+            onchange="getProductsData('products/womensclothing')"
+          />Womens Clothing
+        </div>
+        <br />
+      </div>
+
+      <div class="content"></div>
+    </div>
+  </body>
+</html>
