@@ -5,7 +5,6 @@ var server = http.createServer((req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   console.log(req.url); //"/products/electronics"
   fs.readFile("Products.json", "utf-8", (err, data) => {
-    "{}";
     if (err) {
       res.end("Something went Wrong");
     } else {

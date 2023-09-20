@@ -1,0 +1,14 @@
+{
+  "name": "blogapp",
+  "version": "3.0.0",
+  "description": "This is my first blog app, which contains information about MERN Stack",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kabir Sagar",
+  "license": "ISC",
+  "dependencies": {
+    "redux": "^4.2.1"
+  }
+}

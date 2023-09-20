@@ -1,0 +1,8 @@
+{
+    "application-name":"Ecommerce App",
+    "author":"Kabir",
+    "dependencies": {
+        "express":"7.8.1",
+        "jwt":"5.1.3"
+    }
+}
