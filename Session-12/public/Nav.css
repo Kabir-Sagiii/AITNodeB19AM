@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+}
+header {
+  display: flex;
+  background-color: black;
+  height: 70px;
+}
+header section {
+  color: white;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header nav {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header nav a {
+  color: white;
+  margin-right: 50px;
+  text-decoration: none;
+}
