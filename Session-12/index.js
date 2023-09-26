@@ -16,6 +16,7 @@ app.get("/", (req, res) => {
     }
   });
 });
+
 app.get("/products", (req, res) => {
   fs.readFile("Products.html", "utf-8", (err, data) => {
     if (err) {
