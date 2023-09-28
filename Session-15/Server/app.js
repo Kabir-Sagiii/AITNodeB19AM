@@ -19,11 +19,30 @@ app.post("/newdata", (req, res) => {
 
       data.results.push(req.body);
       data = JSON.stringify(data);
-      fs.writeFile("data.json", data, () => {
-        console.log("added");
-        res.send("Added");
+      fs.writeFile("data.json", data, (err) => {
+        if (err) {
+          res.json({
+            status: false,
+            data: "Failed to add data in the File",
+          });
+        } else {
+          res.json({
+            status: true,
+            data: "Successfully Stored the data in the File",
+          });
+        }
       });
     }
+  });
+});
+
+app.get("/", (req, res) => {
+  console.log("yes");
+  fs.readFile("data.json", "utf-8", (err, data) => {
+    // console.log(data.results.results);
+    res.json({
+      results: JSON.parse(data),
+    });
   });
 });
 

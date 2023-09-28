@@ -8,9 +8,33 @@ function Main() {
     message: "",
   });
 
+  const [usersdata, setUsersData] = useState([]);
+
   const sendData = () => {
     console.log(state);
-    axios.post("http://localhost:5050/newdata", state);
+    axios
+      .post("http://localhost:5050/newdata", state)
+      .then((res) => {
+        console.log(res.data);
+        axios
+          .get("http://localhost:5050/")
+          .then((res) => {
+            console.log(res.data.results.results);
+            setUsersData(res.data.results.results);
+            setState({
+              from: "",
+              message: "",
+            });
+          })
+          .catch((err) => {
+            alert("Failed to receive the data");
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        alert("Error");
+        console.log(err);
+      });
   };
 
   return (
@@ -20,6 +44,7 @@ function Main() {
           <label>From :</label>
           <br />
           <input
+            value={state.from}
             type="text"
             onChange={(e) => {
               setState({
@@ -35,6 +60,7 @@ function Main() {
           <label>Message : </label>
           <br />
           <textarea
+            value={state.message}
             rows={10}
             cols="51"
             onChange={(e) => {
@@ -52,7 +78,7 @@ function Main() {
       </div>
 
       <div>
-        <Table />
+        <Table usersdata={usersdata} />
       </div>
     </div>
   );
