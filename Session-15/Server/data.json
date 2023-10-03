@@ -1,1 +1,5 @@
-{"results":[{"from":"Raj","message":"Raj is a React Developer"},{"from":"Zoya Khan","message":"Zoya is a Java Developer"},{"from":"Siddharath Jaiswal","message":"Siddharath is a Test Enginner"},{"from":"xyz","message":"xyz user"},{"from":"dummy","message":"dummy"}]}
+[{
+    "id":101,
+    "from":"Sagar",
+    "message":"Hello Sagar"
+}]

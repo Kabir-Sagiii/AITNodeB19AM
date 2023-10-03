@@ -1,22 +1,28 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function Table({ usersdata }) {
-  // const [state, setState] = useState({
-  //   results: [],
-  // });
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:5050/")
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setState(res.data.results);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       alert("Something went wrong");
-  //     });
-  // }, []);
+function Table({ sdata, data, idDetails }) {
+  console.log("cdsc", sdata);
+  const deleteData = (id) => {
+    axios
+      .delete(`http://localhost:5050/delete/${id}`)
+      .then((res) => {
+        alert(res.data);
+        axios
+          .get("http://localhost:5050/")
+          .then((res) => {
+            sdata.setUsersData(res.data.results.results);
+          })
+          .catch((err) => {
+            alert("Not fetcable");
+            console.log(err);
+          });
+      })
+      .catch((error) => {
+        alert("error while deleting");
+        console.log(error);
+      });
+  };
   return (
     <div>
       <h2>Data From Server</h2>
@@ -26,17 +32,30 @@ function Table({ usersdata }) {
           <th>MESSAGE</th>
           <th colSpan={2}>ACTION</th>
         </tr>
-        {usersdata.length > 0 &&
-          usersdata.map((usersinfo) => {
+        {sdata.usersdata.results.length > 0 &&
+          sdata.usersdata.results.map((usersinfo) => {
             return (
               <tr>
                 <td>{usersinfo.from}</td>
                 <td>{usersinfo.message}</td>
                 <td>
-                  <button>Update</button>
+                  <button
+                    onClick={() => {
+                      data.setState(false);
+                      idDetails.setId(usersinfo.id);
+                    }}
+                  >
+                    Update
+                  </button>
                 </td>
                 <td>
-                  <button>Delete</button>
+                  <button
+                    onClick={() => {
+                      deleteData(usersinfo.id);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             );
