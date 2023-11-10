@@ -1,0 +1,25 @@
+
+show dbs
+
+use <db name>
+
+db.createCollection("<collectionname>")
+
+show collections 
+
+
+
+Collection name: users
+database : userdb 
+
+   $gt $lt, $eq, $ne, $gte, $lte
+   ------------------------------
+       userdb.users.find({price:{$gt:50000}})
+
+ $in / $nin
+ ------------
+         usersdb.users.find({orderids:{$in:[102,105]}})
+
+ nesting objects
+ -----------------
+         usersdb.user.find({"adress.city":{$eq:"Mumbai"}})

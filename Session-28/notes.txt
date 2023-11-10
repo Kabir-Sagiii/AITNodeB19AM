@@ -1,0 +1,10 @@
+__dirname
+__filename
+path.basename()
+path.join()
+path.parse()
+path.format()
+path.normalise()
+path.dirname()
+path.delimeter
+path.isAbsolute(path)

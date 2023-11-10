@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function sendFile() {
+        var data = document.querySelector("input").files[0];
+        let formdata = new FormData();
+        formdata.append("myimage", data);
+
+        fetch("http://localhost:7979/image", {
+          method: "POST",
+          body: formdata,
+        })
+          .then((res) => {
+            return res.json();
+          })
+          .then((res) => {
+            alert("done");
+            console.log(res);
+          })
+          .catch((eror) => {
+            alert("Error");
+            console.log(eror);
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <div style="text-align: center; margin-top: 100px">
+      <form onsubmit="sendFile(event)">
+        <input type="file" name="myimage" /><br /><br />
+        <button>Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
